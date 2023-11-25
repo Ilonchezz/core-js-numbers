@@ -223,8 +223,12 @@ function isPrime(n) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(/* value, def */) {
-  throw new Error('Not implemented');
+function toNumber(value, def) {
+  const intValue = value * 1;
+  if (Number.isNaN(intValue)) {
+    return def;
+  }
+  return intValue;
 }
 
 /**
@@ -238,8 +242,8 @@ function toNumber(/* value, def */) {
  *   -2 => -8
  *   0  => 0
  */
-function getCube(/* num */) {
-  throw new Error('Not implemented');
+function getCube(num) {
+  return num ** 3;
 }
 
 /**
@@ -255,8 +259,18 @@ function getCube(/* num */) {
  *   3  => 2
  *   10 => 55
  */
-function getFibonacciNumber(/* index */) {
-  throw new Error('Not implemented');
+function getFibonacciNumber(index) {
+  let previousValue = 0;
+  let currentValue = 1;
+  if (index === 0) {
+    return 0;
+  }
+  for (let i = 2; i <= index; i += 1) {
+    const temp = previousValue;
+    previousValue = currentValue;
+    currentValue += temp;
+  }
+  return currentValue;
 }
 
 /**
@@ -270,8 +284,12 @@ function getFibonacciNumber(/* index */) {
  *   10 => 55 // (1+2+3+...+10)
  *   1  => 1
  */
-function getSumToN(/* n */) {
-  throw new Error('Not implemented');
+function getSumToN(n) {
+  let result = 0;
+  for (let i = 1; i <= n; i += 1) {
+    result += i;
+  }
+  return result;
 }
 
 /**
@@ -285,8 +303,14 @@ function getSumToN(/* n */) {
  *   202 => 4  // (2+0+2)
  *   5   => 5  // 5
  */
-function getSumOfDigits(/* num */) {
-  throw new Error('Not implemented');
+function getSumOfDigits(num) {
+  const strNum = num.toString();
+  const arrStr = strNum.split('');
+  let result = 0;
+  for (let i = 0; i < arrStr.length; i += 1) {
+    result += arrStr[i] * 1;
+  }
+  return result;
 }
 
 /**
@@ -300,8 +324,14 @@ function getSumOfDigits(/* num */) {
  *   16  => true
  *   15  => false
  */
-function isPowerOfTwo(/* num */) {
-  throw new Error('Not implemented');
+function isPowerOfTwo(num) {
+  if (num === 1) {
+    return true;
+  }
+  if (num % 2 !== 0) {
+    return false;
+  }
+  return isPowerOfTwo(num / 2);
 }
 
 /**
